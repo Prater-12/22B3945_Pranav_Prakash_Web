@@ -1,0 +1,51 @@
+<app-page-layout>
+  <div class="container my-3">
+    <h2>Add Document</h2>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Title</label>
+      <input
+        type="title"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="Title"
+        [formControl]="title"
+      />
+      <label for="exampleFormControlInput2" class="form-label"
+        >Description</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput2"
+        placeholder="Description"
+        [formControl]="description"
+      />
+      <label for="doc-type" class="form-label">Document Type</label>
+      <select id="doc-type" class="form-select" [formControl]="doc_type">
+        <option value="docs">Docs</option>
+        <option value="slides">Slides</option>
+        <option value="sheets">Sheets</option>
+        <option value="pdf">PDF</option>
+        <option value="repo">Repo</option>
+        <option value="figma">Figma</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <label for="fileInput" class="form-label">File</label>
+    <input
+      type="file"
+      id="fileInput"
+      class="form-control"
+      (change)="onFileChange($event)"
+    />
+    <label for="exampleFormControlInput4" class="form-label">Link</label>
+    <input
+      type="text"
+      class="form-control"
+      id="exampleFormControlInput4"
+      placeholder="https://example.com/... "
+      [formControl]="link"
+    />
+    <button class="btn btn-primary" (click)="createUser()">Add Document</button>
+  </div>
+</app-page-layout>

@@ -1,0 +1,25 @@
+<app-page-layout>
+  <div class="container my-3">
+    <app-progress-bar *ngIf="storeService.isLoading()"></app-progress-bar>
+
+    <ng-container *ngIf="!storeService.isLoading()">
+      <div class="card" *ngFor="let doc of documentList">
+        <div class="card-body">
+          <h5 class="card-title">{{ doc.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Author: {{ doc.author.username }}
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Type: {{ doc.doc_type }}
+          </h6>
+          <p class="card-text">
+            {{ doc.description }}
+          </p>
+          <a href="{{ doc.link ?? doc.file }}" class="btn btn-primary"
+            >Go to Document</a
+          >
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</app-page-layout>

@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "E-Cell Doc Portal (Vite)",
+  "version": "1.0.0",
+  "description": "Extension that integrates E-Cell Doc Portal with Google Docs and Drive",
+  "icons": {
+    "32": "images/icon-32.png",
+    "128": "images/icon-128.png"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["scripting", "cookies"],
+  "host_permissions": [
+    "https://docs.google.com/*",
+    "https://drive.google.com/*",
+    "https://www.youtube.com/*",
+    "https://*/*",
+    "http://*/*"
+  ]
+}
