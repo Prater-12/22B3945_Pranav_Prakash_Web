@@ -145,6 +145,9 @@ export class AppService {
 
     const { data } = await this.api.post(url, formData, {
       withCredentials: true,
+      headers: {
+        'Content-Type': undefined,
+      },
     });
     return data;
   }

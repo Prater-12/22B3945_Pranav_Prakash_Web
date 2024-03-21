@@ -23,11 +23,12 @@ import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component'
 })
 export class AddDocComponent implements OnInit {
   documentList: any[] = [];
-  title = new FormControl('', Validators.required);
-  description = new FormControl('');
-  doc_type = new FormControl('', Validators.required);
-  link = new FormControl('');
-  file = new FormControl('');
+  title = new FormControl<string>('', Validators.required);
+  description = new FormControl<string>('');
+  doc_type = new FormControl<string>('', Validators.required);
+  link = new FormControl<string>('');
+  file = new FormControl(null);
+  file_name = new FormControl<string>('');
 
   constructor(
     public storeService: StoreService,
@@ -49,6 +50,7 @@ export class AddDocComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.file.setValue(file);
+      this.file_name.setValue(file.name);
     }
   }
 
@@ -86,9 +88,13 @@ export class AddDocComponent implements OnInit {
     formData.append('doc_type', this.doc_type.value || 'other');
     if (this.link.value) {
       formData.append('link', this.link.value);
-    }
-    if (this.file.value) {
-      formData.append('file', this.file.value);
+    } else if (this.file.value) {
+      console.log(this.file.value);
+      formData.append(
+        'file',
+        this.file.value,
+        this.file_name.value ?? undefined
+      );
     }
     this.appService.createDocument(formData).then(
       (response) => {
